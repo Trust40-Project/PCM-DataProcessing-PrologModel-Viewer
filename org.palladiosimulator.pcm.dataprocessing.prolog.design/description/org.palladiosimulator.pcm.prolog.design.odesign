@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" name="org.palladiosimulator.pcm.prolog.design" version="12.0.0.2017041100">
+  <ownedViewpoints name="PrologModel">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="PrologModel" domainClass="prologmodel::System" enablePopupBars="true">
+      <metamodel href="http://www.palladiosimulator.org/pcm/dataprocessing/prolog/0.1/#/"/>
+      <filters xsi:type="filter:CompositeFilterDescription" name="ReturnValueAssignment">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='PrologModel']/@ownedRepresentations[name='PrologModel']/@defaultLayer/@edgeMappings[name='ReturnValue']"/>
+      </filters>
+      <filters xsi:type="filter:CompositeFilterDescription" name="CallingRelation">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='PrologModel']/@ownedRepresentations[name='PrologModel']/@defaultLayer/@edgeMappings[name='CallingRelation']"/>
+      </filters>
+      <filters xsi:type="filter:CompositeFilterDescription" name="BorderedNodes">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='PrologModel']/@ownedRepresentations[name='PrologModel']/@defaultLayer/@nodeMappings[name='OperationNode']/@borderedNodeMappings[name='Properties'] //@ownedViewpoints[name='PrologModel']/@ownedRepresentations[name='PrologModel']/@defaultLayer/@nodeMappings[name='OperationNode']/@borderedNodeMappings[name='ReturnValue']"/>
+      </filters>
+      <defaultLayer name="Default">
+        <nodeMappings name="OperationNode" domainClass="prologmodel::Operation">
+          <borderedNodeMappings name="Properties" semanticCandidatesExpression="feature:eAllContents" domainClass="prologmodel::PropertyDefinition">
+            <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="7" labelExpression="service:getPropertyDefinitionText()" sizeComputationExpression="12" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <forbiddenSides>WEST</forbiddenSides>
+              <forbiddenSides>SOUTH</forbiddenSides>
+              <forbiddenSides>NORTH</forbiddenSides>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </borderedNodeMappings>
+          <borderedNodeMappings name="ReturnValue" semanticCandidatesExpression="feature:returnValues" domainClass="prologmodel::Variable">
+            <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelExpression="service:getReturnValueText()" sizeComputationExpression="12" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <forbiddenSides>NORTH</forbiddenSides>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            </style>
+          </borderedNodeMappings>
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelExpression="service:getOperationName()" labelPosition="node" resizeKind="NSEW" width="18" height="8">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='yellow']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="SystemUsages" domainClass="prologmodel::SystemUsage">
+          <style xsi:type="style:SquareDescription" labelExpression="service:getSystemUsagesText()" sizeComputationExpression="10" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="CallingRelation" sourceMapping="//@ownedViewpoints[name='PrologModel']/@ownedRepresentations[name='PrologModel']/@defaultLayer/@nodeMappings[name='OperationNode']" targetMapping="//@ownedViewpoints[name='PrologModel']/@ownedRepresentations[name='PrologModel']/@defaultLayer/@nodeMappings[name='OperationNode']" targetFinderExpression="feature:callee" sourceFinderExpression="feature:caller" domainClass="prologmodel::OperationCall" useDomainElement="true">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <beginLabelStyleDescription labelExpression="service:getPreCallAssignment()">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </beginLabelStyleDescription>
+            <centerLabelStyleDescription labelExpression="service:operationCallNumber()">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="ReturnValue" sourceMapping="//@ownedViewpoints[name='PrologModel']/@ownedRepresentations[name='PrologModel']/@defaultLayer/@nodeMappings[name='OperationNode']" targetMapping="//@ownedViewpoints[name='PrologModel']/@ownedRepresentations[name='PrologModel']/@defaultLayer/@nodeMappings[name='OperationNode']" targetFinderExpression="feature:caller" sourceFinderExpression="feature:callee" domainClass="prologmodel::OperationCall" useDomainElement="true">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelExpression="service:returnValueAssignment()">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="SystemUsageToOperationCall" sourceMapping="//@ownedViewpoints[name='PrologModel']/@ownedRepresentations[name='PrologModel']/@defaultLayer/@nodeMappings[name='SystemUsages']" targetMapping="//@ownedViewpoints[name='PrologModel']/@ownedRepresentations[name='PrologModel']/@defaultLayer/@nodeMappings[name='OperationNode']" targetFinderExpression="feature:callee" sourceFinderExpression="feature:caller" domainClass="prologmodel::OperationCall" useDomainElement="true">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="org.palladiosimulator.pcm.prolog.design.Services"/>
+  </ownedViewpoints>
+</description:Group>
